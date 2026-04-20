@@ -7,6 +7,21 @@
     <title>Luke Robinson's Resume</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<p>👁️ Site visits: <span id="visit-count">...</span></p>
+
+<script>
+  fetch('https://abc123.execute-api.us-east-1.amazonaws.com/visits', {
+    method: 'POST'
+  })
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('visit-count').textContent = data.visits.toLocaleString();
+  })
+  .catch(() => {
+    document.getElementById('visit-count').textContent = '—';
+  });
+</script>
+
 <body>
     <h1>Luke Robinson</h1>
     <p>Alexandria, VA 22302</p>
